@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura Living — Luxury UK Interior Design & Lifestyle Studio 🇬🇧🍊</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/4.20.0/gradio.js"></script>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans', sans-serif;scroll-behavior:smooth}
+
+body {
+    background: #fff7ed;
+    color: #1c1917;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1300px;
+    background: #ffffff;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 30px 90px rgba(234,88,12,0.1);
+    border: 1px solid #ffedd5;
+}
+
+header {
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border-bottom: 1px solid #ffedd5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1c1917;
+    letter-spacing: -1px;
+}
+
+.brand span {
+    color: #f97316;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #78716c;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #f97316;
+}
+
+.nav-cta {
+    background: #1c1917;
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-cta:hover {
+    background: #f97316;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 70px 60px;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.hero-content {
+    flex: 1.2;
+    min-width: 320px;
+}
+
+.uk-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    color: #ea580c;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(234,88,12,0.08);
+    margin-bottom: 20px;
+    border: 1px solid #fed7aa;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #1c1917;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    font-style: italic;
+    color: #ea580c;
+}
+
+.hero p {
+    font-size: 17px;
+    color: #57534e;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.ai-avatar-card {
+    flex: 1;
+    min-width: 320px;
+    background: #ffffff;
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(249,115,22,0.12);
+    border: 2px solid #fed7aa;
+    position: relative;
+}
+
+.avatar-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ffedd5;
+    padding-bottom: 15px;
+}
+
+.avatar-img {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #fb923c, #ea580c);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(234,88,12,0.3);
+}
+
+.avatar-info h3 {
+    font-size: 18px;
+    color: #1c1917;
+    font-weight: 800;
+}
+
+.avatar-info span {
+    font-size: 13px;
+    color: #16a34a;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.avatar-speech {
+    background: #fff7ed;
+    padding: 18px 22px;
+    border-radius: 20px;
+    font-size: 15px;
+    color: #9a3412;
+    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-left: 4px solid #f97316;
+}
+
+.chat-input-sim {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input-sim input {
+    flex: 1;
+    padding: 14px 20px;
+    border-radius: 25px;
+    border: 1px solid #fed7aa;
+    background: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.chat-input-sim button {
+    background: #f97316;
+    color: #fff;
+    border: none;
+    padding: 0 22px;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.section {
+    padding: 80px 60px;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+}
+
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: #1c1917;
+    margin-bottom: 12px;
+}
+
+.section-title p {
+    color: #78716c;
+    font-size: 16px;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.price-card {
+    background: #ffffff;
+    border: 1px solid #ffedd5;
+    border-radius: 30px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.price-card.popular {
+    background: #1c1917;
+    color: #fff;
+    border-color: #1c1917;
+    box-shadow: 0 20px 40px rgba(28,25,23,0.2);
+    transform: translateY(-8px);
+}
+
+.price-card h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.price-card.popular h3 { color: #fff; }
+
+.price-amount {
+    font-size: 46px;
+    font-weight: 900;
+    color: #f97316;
+    margin: 20px 0;
+}
+
+.price-card.popular .price-amount { color: #fdba74; }
+
+.price-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.price-card ul li {
+    margin: 14px 0;
+    font-size: 15px;
+    color: #57534e;
+    font-weight: 600;
+}
+
+.price-card.popular ul li { color: #d6d3d1; }
+
+.plan-btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    background: #ffedd5;
+    color: #9a3412;
+    transition: 0.2s;
+}
+
+.price-card.popular .plan-btn {
+    background: #f97316;
+    color: #fff;
+}
+
+.blog-section {
+    background: #fff7ed;
+    border-top: 1px solid #ffedd5;
+    border-bottom: 1px solid #ffedd5;
+}
+
+.blog-box {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    box-shadow: 0 15px 40px rgba(249,115,22,0.06);
+    border: 1px solid #ffedd5;
+}
+
+.blog-left {
+    flex: 1.5;
+}
+
+.blog-left h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: #1c1917;
+    margin-bottom: 15px;
+}
+
+.blog-left p {
+    color: #57534e;
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.email-badge {
+    display: inline-block;
+    background: #ffedd5;
+    color: #ea580c;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    color: #1c1917;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    color: #57534e;
+    line-height: 1.7;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #1c1917;
+    color: #a8a29e;
+    padding: 50px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+footer .brand-f {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #fff;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-links a {
+    color: #a8a29e;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+</style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header>
+            <div class="brand">Aura<span>Living</span>.</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#ai-studio">AI Companion</a>
+                <a href="#pricing">UK Pricing</a>
+                <a href="#blog">Guest Posts</a>
+                <a href="#about">About Studio</a>
+            </nav>
+            <button class="nav-cta" onclick="document.getElementById('ai-studio').scrollIntoView({behavior:'smooth'})">Launch Studio →</button>
+        </header>
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="uk-tag">🇬🇧 Designed for UK Luxury Homes</span>
+                <h1>Your Intelligent <i>Interior & Lifestyle</i> Companion.</h1>
+                <p>Welcome to Aura Living—your 24/7 digital muse for high-end home styling, smart room redesigns, and curated British decor aesthetics in stunning warm orange tones.</p>
+                <button class="nav-cta" style="padding: 16px 36px; font-size: 16px;" onclick="document.getElementById('ai-studio').scrollIntoView({behavior:'smooth'})">Explore AI Studio ✨</button>
+            </div>
+
+            <div class="ai-avatar-card">
+                <div class="avatar-header">
+                    <div class="avatar-img">👩🏻‍💻</div>
+                    <div class="avatar-info">
+                        <h3>Sophie (AI Companion)</h3>
+                        <span>● Online & Ready 24/7</span>
+                    </div>
+                </div>
+                <div class="avatar-speech">
+                    "Hello darling! I am here for you 24/7. Ask me anything about modern room styling, warm UK color pallets, or furniture selection!"
+                </div>
+                <div class="chat-input-sim">
+                    <input type="text" placeholder="Ask Sophie a design question..." id="userMsg">
+                    <button onclick="alert('Sophie AI is active! Type your request in our main studio below.')">Send</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="ai-studio" style="background:#ffffff;">
+            <div class="section-title">
+                <h2>Interactive AI Design Studio</h2>
+                <p>Transform your space instantly using our advanced AI engine tailored for modern aesthetics.</p>
+            </div>
+            <div style="min-height: 650px; border-radius: 24px; overflow: hidden; background: #fff7ed; border: 2px dashed #fb923c; padding: 10px;">
+                <gradio-app src="https://satyapranav06-interior-room-designer.hf.space"></gradio-app>
+            </div>
+        </section>
+
+        <section class="section" id="pricing" style="background:#fffbeb;">
+            <div class="section-title">
+                <h2>UK Investment & Pricing Tiers</h2>
+                <p>Choose the ultimate plan designed for homeowners, UK designers, and commercial studios.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <h3>Starter Free</h3>
+                        <div class="price-amount">£0</div>
+                        <ul>
+                            <li>✓ 3 Room Redesigns / month</li>
+                            <li>✓ Basic UK Color Palettes</li>
+                            <li>✓ Standard 1080p Export</li>
+                        </ul>
+                    </div>
+                    <button class="plan-btn" onclick="document.getElementById('ai-studio').scrollIntoView({behavior:'smooth'})">Get Started Free</button>
+                </div>
+
+                <div class="price-card popular">
+                    <div>
+                        <span style="background:#f97316;color:#fff;padding:4px 12px;border-radius:12px;font-size:11px;font-weight:800;letter-spacing:1px;">MOST POPULAR IN UK</span>
+                        <h3 style="margin-top:12px;">Pro Designer</h3>
+                        <div class="price-amount">£40<span style="font-size:16px;color:#fed7aa;">/mo</span></div>
+                        <ul>
+                            <li>✓ Unlimited AI Room Transformations</li>
+                            <li>✓ Full UK Furniture & Bedding Catalog</li>
+                            <li>✓ 4K Ultra-HD Render Exports</li>
+                            <li>✓ 24/7 Priority Access to Sophie AI</li>
+                        </ul>
+                    </div>
+                    <button class="plan-btn">Upgrade to Pro</button>
+                </div>
+
+                <div class="price-card">
+                    <div>
+                        <h3>Enterprise</h3>
+                        <div class="price-amount">£85<span style="font-size:16px;color:#78716c;">/mo</span></div>
+                        <ul>
+                            <li>✓ Full Commercial Studio Access</li>
+                            <li>✓ Custom 3D Asset Rendering</li>
+                            <li>✓ Dedicated British Senior Designer</li>
+                            <li>✓ Direct API Access & Support</li>
+                        </ul>
+                    </div>
+                    <button class="plan-btn" onclick="document.getElementById('ai-studio').scrollIntoView({behavior:'smooth'})">Go Enterprise</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section blog-section" id="blog">
+            <div class="section-title">
+                <h2>Journal & Guest Posting</h2>
+                <p>Contribute your insights on British architecture, home decor trends, and luxury living.</p>
+            </div>
+
+            <div class="blog-box">
+                <div
